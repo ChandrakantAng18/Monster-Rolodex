@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import logo from "./logo.svg";
 import CardList from "./components/card-list/card-list.Component";
-// import SearchBox from "./components/search-box/search-box.components";
+import SearchBox from "./components/search-box/search-box.components";
 import "./App.css";
 
 export default function App() {
@@ -23,23 +23,29 @@ export default function App() {
       return monster.name.toLowerCase().includes(searchField);
     });
     setFilteredMonsters(newFilteredMonsters);
+    console.log("NewMon", newFilteredMonsters);
   }, [monsters, searchField]);
 
   const onChangeHandler = (event) => {
     const searchString = event.target.value;
     return setSearchField(searchString);
   };
-
+  console.log("SearchField", searchField);
+  console.log("--filtered Monsters:->", filteredMonsters);
   return (
     <div>
       <h1 className="app-title">Monster Rolodex</h1>
-      <input
+      {/* <input
         className="search-box"
         type="search"
         placeholder="Search Monsters"
         onChange={onChangeHandler}
-      />
-
+      /> */}
+      <SearchBox
+        placeholder={"Search Monsters"}
+        onChange={onChangeHandler}
+        className={"search-box"}
+      ></SearchBox>
       <CardList monsters={filteredMonsters} />
       {/* {filteredMonsters.map((monster) => {
         return (
